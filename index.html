@@ -1,21 +1,24 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<title>彻底隐藏你HTML网页的源代码 </title>
-<script>
-function clear() {
-Source=document.body.firstChild.data;
-document.open();
-document.close();
-document.body.innerHTML=Source;
-}
-</script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Content Page</title>
 </head>
+<body>
+    <div id="content"></div>
 
-<body onload=clear()>
-<!–
-<div align=center>现在已经看不到我的源代码了吧！
-<br/>www.iplaysoft.com<br/>
-异次元软件世界</div>
-–>
+    <script>
+        // 此脚本用于在客户端动态生成内容
+        fetch('https://api.example.com/content')
+            .then(response => response.json())
+            .then(data => {
+                const contentDiv = document.getElementById('content');
+                contentDiv.innerHTML = data.content;
+            })
+            .catch(error => {
+                console.error('Error fetching content:', error);
+            });
+    </script>
 </body>
 </html>
